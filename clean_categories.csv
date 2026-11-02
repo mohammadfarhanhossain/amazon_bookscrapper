@@ -1,0 +1,473 @@
+﻿category_id,category_name
+1,Literature & Fiction
+2,"Mystery, Thriller & Suspense"
+3,Science Fiction & Fantasy
+4,Biographies & Memoirs
+5,Business & Money
+6,Computers & Technology
+7,Self-Help
+8,History
+9,Science & Math
+10,Romance
+11,Childrens Books
+12,Teen & Young Adult
+13,Comics & Graphic Novels
+14,"Cookbooks, Food & Wine"
+15,Religion & Spirituality
+16,"Health, Fitness & Dieting"
+17,Arts & Photography
+18,Education & Teaching
+19,Politics & Social Sciences
+20,Travel
+21,Search: Python Programming
+22,Literature & Fiction - Action & Adventure
+23,Literature & Fiction - Ancient & Medieval Literature
+24,Literature & Fiction - Black & African American
+25,Literature & Fiction - British & Irish
+26,Literature & Fiction - Classics
+27,Literature & Fiction - Contemporary
+28,Literature & Fiction - Disability Fiction
+29,Literature & Fiction - Dramas & Plays
+30,Literature & Fiction - Erotica
+31,Literature & Fiction - Essays & Correspondence
+32,Literature & Fiction - Genre Fiction
+33,Literature & Fiction - Historical Fiction
+34,Literature & Fiction - History & Criticism
+35,Literature & Fiction - Humor & Satire
+36,Literature & Fiction - Literary
+37,Literature & Fiction - Mythology & Folk Tales
+38,Literature & Fiction - Poetry
+39,Literature & Fiction - Short Stories & Anthologies
+40,Literature & Fiction - United States
+41,Literature & Fiction - Womens Fiction
+42,Literature & Fiction - World Literature
+43,Books - Hot New Releases
+44,Search: Fiction
+45,Search: Nonfiction
+46,Search: Mystery Thriller
+47,Search: Science Fiction
+48,Search: Fantasy
+49,Search: Biography Memoir
+50,Search: History
+51,Search: Business Money
+52,Search: Computers Programming
+53,Search: Artificial Intelligence
+54,Search: Psychology
+55,Search: Self Help
+56,Search: Philosophy
+57,Search: Romance
+58,Search: Poetry
+59,Search: Classic Literature
+60,Search: Manga Graphic Novel
+61,Search: Childrens Books
+62,Search: Teen Young Adult
+63,Search: Science Math
+64,Search: Cookbooks Wine
+65,Search: Health Fitness
+66,Search: Religion Spirituality
+67,Search: Politics Social Sciences
+68,"Mystery, Thriller & Suspense - Mystery"
+69,"Mystery, Thriller & Suspense - Thrillers & Suspense"
+70,Science Fiction & Fantasy - Fantasy
+71,Science Fiction & Fantasy - Gaming
+72,Science Fiction & Fantasy - Science Fiction
+73,Biographies & Memoirs - Arts & Literature
+74,Biographies & Memoirs - Biographies
+75,Biographies & Memoirs - Community & Culture
+76,Biographies & Memoirs - Historical
+77,Biographies & Memoirs - Leaders & Notable People
+78,Biographies & Memoirs - Memoirs
+79,Biographies & Memoirs - Professionals & Academics
+80,Biographies & Memoirs - Reference & Collections
+81,Biographies & Memoirs - Regional Canada
+82,Biographies & Memoirs - Regional U.S.
+83,Biographies & Memoirs - Survival
+84,Biographies & Memoirs - Travelers & Explorers
+85,Biographies & Memoirs - True Crime
+86,Business & Money - Accounting
+87,Business & Money - Biography & History
+88,Business & Money - Bitcoin & Cryptocurrencies
+89,Business & Money - Business Culture
+90,Business & Money - Business Development & Entrepreneurship
+91,Business & Money - Economics
+92,Business & Money - Education & Reference
+93,Business & Money - Finance
+94,Business & Money - Human Resources
+95,Business & Money - Industries
+96,Business & Money - Insurance
+97,Business & Money - International
+98,Business & Money - Investing
+99,Business & Money - Job Hunting & Careers
+100,Business & Money - Management & Leadership
+101,Business & Money - Marketing & Sales
+102,Business & Money - Personal Finance
+103,Business & Money - Processes & Infrastructure
+104,Business & Money - Real Estate
+105,Business & Money - Skills
+106,Business & Money - Taxation
+107,Business & Money - Women & Business
+108,Computers & Technology - Business Technology
+109,Computers & Technology - Certification
+110,Computers & Technology - Computer Science
+111,Computers & Technology - Databases & Big Data
+112,"Computers & Technology - Digital Audio, Video & Photography"
+113,Computers & Technology - Games & Strategy Guides
+114,Computers & Technology - Graphics & Design
+115,Computers & Technology - Hardware & DIY
+116,Computers & Technology - History & Culture
+117,Computers & Technology - Internet & Social Media
+118,"Computers & Technology - Mobile Phones, Tablets & E-Readers"
+119,Computers & Technology - Networking & Cloud Computing
+120,Computers & Technology - Operating Systems
+121,Computers & Technology - Programming
+122,Computers & Technology - Programming Languages
+123,Computers & Technology - Security & Encryption
+124,Computers & Technology - Software
+125,Computers & Technology - Web Development & Design
+126,Self-Help - Abuse
+127,Self-Help - Anger Management
+128,Self-Help - Anxieties & Phobias
+129,Self-Help - Art Therapy & Relaxation
+130,Self-Help - Communication & Social Skills
+131,Self-Help - Creativity
+132,Self-Help - Death & Grief
+133,Self-Help - Dreams
+134,Self-Help - Eating Disorders & Body Image
+135,Self-Help - Emotions
+136,Self-Help - Handwriting Analysis
+137,Self-Help - Happiness
+138,Self-Help - Hypnosis
+139,Self-Help - Inner Child
+140,Self-Help - Journal Writing
+141,Self-Help - Memory Improvement
+142,Self-Help - Mid-Life
+143,Self-Help - Motivational
+144,Self-Help - Neuro-Linguistic Programming
+145,Self-Help - New Age
+146,Self-Help - Personal Transformation
+147,Self-Help - Relationships
+148,Self-Help - Self-Esteem
+149,Self-Help - Sex
+150,Self-Help - Spiritual
+151,Self-Help - Stress Management
+152,Self-Help - Success
+153,Self-Help - Time Management
+154,History - Africa
+155,History - Americas
+156,History - Ancient Civilizations
+157,History - Arctic & Antarctica
+158,History - Asia
+159,History - Australia & Oceania
+160,History - Europe
+161,History - Historical Study & Educational Resources
+162,History - Indigenous
+163,History - Middle East
+164,History - Military
+165,History - Russia
+166,History - United States
+167,History - World
+168,Science & Math - Agricultural Sciences
+169,Science & Math - Archaeology
+170,Science & Math - Astronomy & Space Science
+171,Science & Math - Behavioral Sciences
+172,Science & Math - Biological Sciences
+173,Science & Math - Chemistry
+174,Science & Math - Earth Sciences
+175,Science & Math - Environment
+176,Science & Math - Essays & Commentary
+177,Science & Math - Evolution
+178,"Science & Math - Experiments, Instruments & Measurement"
+179,Science & Math - History & Philosophy
+180,Science & Math - Mathematics
+181,Science & Math - Nature & Ecology
+182,Science & Math - Physics
+183,Science & Math - Reference
+184,Science & Math - Research
+185,Science & Math - Science for Kids
+186,Science & Math - Technology
+187,Romance - Action & Adventure
+188,Romance - Adaptations
+189,Romance - Alpha Male
+190,Romance - Amish & Mennonite
+191,Romance - Billionaires & Millionaires
+192,Romance - Clean & Wholesome
+193,Romance - Collections & Anthologies
+194,Romance - Contemporary
+195,Romance - Dark Romance
+196,Romance - Enemies to Lovers
+197,Romance - Fake Dating
+198,Romance - Firefighters
+199,Romance - Friends to Lovers
+200,Romance - Gothic
+201,Romance - Hispanic & Latino
+202,Romance - Historical
+203,Romance - Holidays
+204,Romance - LGBTQ+ Romance
+205,Romance - Later in Life
+206,Romance - Love Triangle
+207,Romance - Mafia Romance
+208,Romance - Medical
+209,Romance - Military
+210,Romance - Multicultural & Interracial
+211,Romance - New Adult & College
+212,Romance - Paranormal
+213,Romance - Police
+214,Romance - Polyamory
+215,Romance - Rockstar Romance
+216,Romance - Romantasy
+217,Romance - Romantic Comedy
+218,Romance - Romantic Suspense
+219,Romance - Science Fiction
+220,Romance - Small Town Romance
+221,Romance - Sports
+222,Romance - Time Travel
+223,Romance - Vampires
+224,Romance - Werewolves & Shifters
+225,Romance - Western & Frontier
+226,Romance - Workplace Romance
+227,Childrens Books - Action & Adventure
+228,"Childrens Books - Activities, Crafts & Games"
+229,Childrens Books - Animals
+230,"Childrens Books - Arts, Music & Photography"
+231,Childrens Books - Biographies
+232,"Childrens Books - Cars, Trains & Things That Go"
+233,Childrens Books - Childrens Cookbooks
+234,Childrens Books - Classics
+235,Childrens Books - Comics & Graphic Novels
+236,Childrens Books - Computers & Technology
+237,Childrens Books - Early Learning
+238,Childrens Books - Education & Reference
+239,"Childrens Books - Fairy Tales, Folk Tales & Myths"
+240,Childrens Books - Geography & Cultures
+241,Childrens Books - Growing Up & Facts of Life
+242,Childrens Books - History
+243,Childrens Books - Holidays & Celebrations
+244,Childrens Books - Humor
+245,Childrens Books - Literature & Fiction
+246,Childrens Books - Mysteries & Detectives
+247,Childrens Books - Religions
+248,Childrens Books - Science Fiction & Fantasy
+249,"Childrens Books - Science, Nature & How It Works"
+250,Childrens Books - Sports & Outdoors
+251,"Teen & Young Adult - Art, Music & Photography"
+252,Teen & Young Adult - Biographies
+253,Teen & Young Adult - Education & Reference
+254,Teen & Young Adult - Historical Fiction
+255,Teen & Young Adult - Hobbies & Games
+256,Teen & Young Adult - Literature & Fiction
+257,Teen & Young Adult - Mysteries & Thrillers
+258,Teen & Young Adult - Personal Health
+259,Teen & Young Adult - Religion & Spirituality
+260,Teen & Young Adult - Romance
+261,Teen & Young Adult - Science Fiction & Fantasy
+262,Teen & Young Adult - Social Issues
+263,Teen & Young Adult - Sports & Outdoors
+264,Comics & Graphic Novels - Action & Adventure Manga
+265,Comics & Graphic Novels - Art of Comics and Manga
+266,Comics & Graphic Novels - Biographies & History Graphic Novels
+267,Comics & Graphic Novels - Comic Strips
+268,Comics & Graphic Novels - Fantasy Graphic Novels
+269,Comics & Graphic Novels - Graphic Novels
+270,Comics & Graphic Novels - History & Price Guides
+271,Comics & Graphic Novels - How To Create Comics & Manga
+272,Comics & Graphic Novels - Manga
+273,Comics & Graphic Novels - Media Tie-In Graphic Novels
+274,Comics & Graphic Novels - Publishers
+275,Comics & Graphic Novels - Romance Manga
+276,Comics & Graphic Novels - Science Fiction Graphic Novels
+277,Comics & Graphic Novels - Superheroes
+278,"Cookbooks, Food & Wine - Asian Cooking"
+279,"Cookbooks, Food & Wine - Baking"
+280,"Cookbooks, Food & Wine - Beverages & Wine"
+281,"Cookbooks, Food & Wine - Canning & Preserving"
+282,"Cookbooks, Food & Wine - Celebrities & TV Shows"
+283,"Cookbooks, Food & Wine - Comfort Food"
+284,"Cookbooks, Food & Wine - Cooking Education & Reference"
+285,"Cookbooks, Food & Wine - Cooking Methods"
+286,"Cookbooks, Food & Wine - Cooking by Ingredient"
+287,"Cookbooks, Food & Wine - Desserts"
+288,"Cookbooks, Food & Wine - Entertaining & Holidays"
+289,"Cookbooks, Food & Wine - Italian Cooking"
+290,"Cookbooks, Food & Wine - Kitchen Appliances"
+291,"Cookbooks, Food & Wine - Main Courses & Side Dishes"
+292,"Cookbooks, Food & Wine - Outdoor Cooking"
+293,"Cookbooks, Food & Wine - Professional Cooking"
+294,"Cookbooks, Food & Wine - Quick & Easy"
+295,"Cookbooks, Food & Wine - Regional & International"
+296,"Cookbooks, Food & Wine - Special Diet"
+297,"Cookbooks, Food & Wine - U.S. Cooking"
+298,"Cookbooks, Food & Wine - Vegetarian & Vegan"
+299,Religion & Spirituality - Agnosticism
+300,Religion & Spirituality - Atheism
+301,Religion & Spirituality - Buddhism
+302,Religion & Spirituality - Christian Books & Bibles
+303,Religion & Spirituality - Creation
+304,Religion & Spirituality - Faith Deconstruction
+305,Religion & Spirituality - Hinduism
+306,Religion & Spirituality - Islam
+307,Religion & Spirituality - Judaism
+308,Religion & Spirituality - Literature & Fiction
+309,Religion & Spirituality - New Age & Spirituality
+310,Religion & Spirituality - Occult & Paranormal
+311,Religion & Spirituality - Other Eastern Religions & Sacred Texts
+312,"Religion & Spirituality - Other Religions, Practices & Sacred Texts"
+313,Religion & Spirituality - Religious
+314,Religion & Spirituality - Religious Studies
+315,Religion & Spirituality - Worship & Devotion
+316,"Health, Fitness & Dieting - Addiction & Recovery"
+317,"Health, Fitness & Dieting - Aging"
+318,"Health, Fitness & Dieting - Alternative Medicine"
+319,"Health, Fitness & Dieting - Beauty, Grooming, & Style"
+320,"Health, Fitness & Dieting - Children & Adolescents Health"
+321,"Health, Fitness & Dieting - Diets & Weight Loss"
+322,"Health, Fitness & Dieting - Diseases & Physical Ailments"
+323,"Health, Fitness & Dieting - Exercise & Fitness"
+324,"Health, Fitness & Dieting - Mens Health"
+325,"Health, Fitness & Dieting - Mental Health"
+326,"Health, Fitness & Dieting - Nutrition"
+327,"Health, Fitness & Dieting - Psychology & Counseling"
+328,"Health, Fitness & Dieting - Reference"
+329,"Health, Fitness & Dieting - Safety & First Aid"
+330,"Health, Fitness & Dieting - Sexual Health"
+331,"Health, Fitness & Dieting - Sports Health & Safety"
+332,"Health, Fitness & Dieting - Teen Health"
+333,"Health, Fitness & Dieting - Vaccinations"
+334,"Health, Fitness & Dieting - Womens Health"
+335,Arts & Photography - Architecture
+336,Arts & Photography - Art Movements
+337,Arts & Photography - Business of Art
+338,"Arts & Photography - Collections, Catalogs & Exhibitions"
+339,Arts & Photography - Decorative Arts & Design
+340,Arts & Photography - Disability
+341,Arts & Photography - Drawing
+342,Arts & Photography - European Art
+343,Arts & Photography - Fashion
+344,Arts & Photography - Graphic Design
+345,Arts & Photography - History & Criticism
+346,Arts & Photography - Individual Artists
+347,Arts & Photography - Man-Made Objects
+348,Arts & Photography - Music
+349,Arts & Photography - Other Media
+350,Arts & Photography - Painting
+351,Arts & Photography - Performing Arts
+352,Arts & Photography - Photography & Video
+353,Arts & Photography - Sculpture
+354,Arts & Photography - Study & Teaching
+355,Arts & Photography - Themes
+356,Education & Teaching - Higher & Continuing Education
+357,Education & Teaching - Schools & Teaching
+358,Education & Teaching - Studying & Workbooks
+359,Education & Teaching - Test Preparation
+360,Politics & Social Sciences - Anthropology
+361,Politics & Social Sciences - Philosophy
+362,Politics & Social Sciences - Politics & Government
+363,Politics & Social Sciences - Social Sciences
+364,Politics & Social Sciences - Sociology
+365,Politics & Social Sciences - Womens Studies
+366,Travel - Africa
+367,Travel - Asia
+368,Travel - Australia & Oceania
+369,Travel - Canada
+370,Travel - Caribbean & West Indies
+371,Travel - Central America
+372,Travel - Europe
+373,"Travel - Food, Lodging & Transportation"
+374,Travel - Mexico
+375,Travel - Middle East
+376,Travel - Pictorial
+377,Travel - Polar Regions
+378,Travel - Reference
+379,Travel - South America
+380,Travel - Specialty Travel
+381,Travel - Travel Writing
+382,Travel - United States
+383,Fiction Novel
+384,Nonfiction
+385,Mystery Thriller
+386,Psychological Thriller
+387,Science Fiction
+388,Space Opera
+389,Epic Fantasy
+390,Dark Fantasy
+391,Urban Fantasy
+392,Detective Mystery
+393,Cozy Mystery
+394,Crime Fiction
+395,Historical Fiction
+396,Horror Thriller
+397,Short Stories Collection
+398,Literary Fiction
+399,Dystopian Novels
+400,Contemporary Romance
+401,Dark Romance
+402,Historical Romance
+403,Poetry Collection
+404,Classic Literature
+405,Manga Comic
+406,Graphic Novel
+407,Mythology Folklore
+408,Fairy Tales
+409,Childrens Picture Books
+410,Middle Grade Fiction
+411,Teen Young Adult Fantasy
+412,Biography Memoir
+413,Autobiography
+414,World History
+415,Ancient History
+416,Military History
+417,American History
+418,European History
+419,Asian History
+420,Politics Government
+421,Sociology Culture
+422,Anthropology Archaeology
+423,Philosophy Ethics
+424,Stoicism
+425,Education Pedagogy
+426,Linguistics Language Learning
+427,Computer Science
+428,Python Programming
+429,Artificial Intelligence Machine Learning
+430,Deep Learning Neural Networks
+431,Data Science Analytics
+432,Cybersecurity Ethical Hacking
+433,Software Architecture
+434,Web Development Javascript
+435,Cloud Computing Devops
+436,Algorithms Data Structures
+437,Robotics Automation
+438,Game Development Unity
+439,Physics Mathematics
+440,Astrophysics Quantum
+441,Biology Genetics
+442,Astronomy Cosmos
+443,Chemistry
+444,Neuroscience Brain
+445,Microbiology
+446,Business Management
+447,Leadership Strategy
+448,Entrepreneurship Startup
+449,Personal Finance Investing
+450,Stock Market Trading
+451,Real Estate Investing
+452,Economics Macroeconomics
+453,Accounting Auditing
+454,Project Management Agile
+455,Law Legal Studies
+456,Psychology Cognitive
+457,Self Help Productivity
+458,Habits Personal Development
+459,Mental Health Mindfulness
+460,Yoga Meditation
+461,Spirituality Religion
+462,Cookbooks Recipes
+463,Baking Desserts
+464,Healthy Nutrition Diet
+465,Fitness Exercise
+466,Fine Arts Photography
+467,Architecture Design
+468,Creative Writing Guide
+469,Music Theory History
+470,Travel Guides
+471,Nature Wildlife
+472,Gardening Plants
