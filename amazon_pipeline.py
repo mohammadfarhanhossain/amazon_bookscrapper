@@ -577,7 +577,14 @@ def scrape_amazon_pipeline(
             print(f"\n[CRAWL] [{idx}/{len(targets)}] ({target_type.upper()}) {t_name}")
             print(f" -> URL: {t_url}")
 
-            for page_num in range(1, max_pages + 1):
+            page_num = 1
+            while True:
+                if max_pages and max_pages > 0 and page_num > max_pages:
+                    break
+                if page_num > 100:  # Amazon global search pagination ceiling
+                    print(f" -> Reached global Amazon ceiling (100 pages) for '{t_name}'.")
+                    break
+
                 if target_type == "search":
                     page_url = f"{t_url}&page={page_num}" if page_num > 1 else t_url
                 else:
@@ -614,8 +621,10 @@ def scrape_amazon_pipeline(
                     if target_type == "search":
                         items = page.query_selector_all("div[data-component-type='s-search-result']")
                         print(f" -> Page {page_num}: found {len(items)} search items")
-                        if not items:
+                        if not items or "No results for" in content:
+                            print(f" -> No more search items found on page {page_num}. Ending query '{t_name}'.")
                             break
+
                         added_for_page = 0
                         clean_cat = t_name.replace("Search: ", "") if t_name.startswith("Search: ") else t_name
                         for card in items:
@@ -628,8 +637,9 @@ def scrape_amazon_pipeline(
 
                         # End-of-results detection ("end porjonto scrape")
                         disabled_next = page.query_selector("span.s-pagination-disabled.s-pagination-next, li.a-disabled.a-last")
-                        if disabled_next:
-                            print(f" -> Reached last available page for '{t_name}'.")
+                        has_next = page.query_selector("a.s-pagination-next, li.a-last a")
+                        if disabled_next or not has_next:
+                            print(f" -> Reached final page {page_num} for '{t_name}'.")
                             break
 
                     else:
@@ -647,6 +657,12 @@ def scrape_amazon_pipeline(
                                 seen_asins.add(parsed["asin"])
                                 added_for_page += 1
                         print(f" -> Added {added_for_page} new books (Total unique: {len(seen_asins)})")
+
+                    page_num += 1
+
+                except Exception as exc:
+                    print(f"[WARN] Error on '{t_name}' page {page_num}: {exc}")
+                    break
 
                 except Exception as exc:
                     print(f"[WARN] Error on '{t_name}' page {page_num}: {exc}")
@@ -871,19 +887,20 @@ def main():
     parser = argparse.ArgumentParser(description="Unified Amazon Books Scraper, Normalization & SQL Pipeline.")
     parser.add_argument("--scrape", action="store_true", help="Scrape Amazon books.")
     parser.add_argument("--scrape-all", action="store_true", help="Scrape Bestsellers, Discovered Subcategories, Charts, and Search listings.")
-    parser.add_argument("--deep-expansion", action="store_true", help="Maximum scale: 7 pages per query, A-Z/Bigram/Dictionary seeds, Publication Years, deep nested subcategories, and charts.")
+    parser.add_argument("--deep-expansion", action="store_true", help="Maximum scale: unlimited pages until end of results, A-Z/Bigram seeds, Publication Years, deep subcategories, and charts.")
+    parser.add_argument("--scrape-to-end", action="store_true", help="Scrape until the absolute final page Amazon provides for every query/department.")
     parser.add_argument("--mode", choices=["all", "bestsellers", "charts", "search"], default=None, help="Target specific scrape mode.")
     parser.add_argument("--discover-subcategories", action="store_true", help="Discover and scrape nested subcategories from the sidebar.")
     parser.add_argument("--include-charts", action="store_true", help="Include New Releases, Movers & Shakers, and Most Wished For.")
     parser.add_argument("--search-keywords", type=str, nargs="?", const="", default=None, help="Comma-separated keywords to search (e.g. 'python, thriller, fantasy').")
-    parser.add_argument("--max-pages", type=int, default=2, help="Number of pages to scrape per category or keyword (default: 2; deep expansion defaults to 7).")
+    parser.add_argument("--max-pages", type=int, default=2, help="Number of pages to scrape per category/keyword (default: 2; deep expansion defaults to 0 = unlimited).")
     parser.add_argument("--category-limit", type=int, default=None, help="Limit number of target categories/searches.")
     parser.add_argument("--force-list", action="store_true", help="Re-seed raw categories list.")
     parser.add_argument("--build-only", action="store_true", help="Build clean CSVs without scraping or SQL upload.")
     parser.add_argument("--verify-only", action="store_true", help="Verify clean CSVs and dollar pricing.")
     args = parser.parse_args()
 
-    if args.force_list and not (args.scrape or args.scrape_all or args.deep_expansion or args.build_only or args.mode or args.search_keywords):
+    if args.force_list and not (args.scrape or args.scrape_all or args.deep_expansion or args.scrape_to_end or args.build_only or args.mode or args.search_keywords):
         setup_raw_categories(force=True)
         print("[OK] Categories list refreshed.")
         return
@@ -895,15 +912,15 @@ def main():
         verify_local_csvs()
         return
 
-    should_scrape = args.scrape or args.scrape_all or args.deep_expansion or (args.mode is not None) or (args.search_keywords is not None)
+    should_scrape = args.scrape or args.scrape_all or args.deep_expansion or args.scrape_to_end or (args.mode is not None) or (args.search_keywords is not None)
 
     if should_scrape:
-        if args.deep_expansion:
+        if args.deep_expansion or args.scrape_to_end:
             selected_mode = "all"
             discover_subs = True
             inc_charts = True
             keywords = COMBINED_EXPANDED_KEYWORDS
-            effective_max_pages = 7 if args.max_pages == 2 else args.max_pages
+            effective_max_pages = 0 if args.max_pages == 2 else args.max_pages  # 0 = unlimited / to the end!
         else:
             discover_subs = args.discover_subcategories or args.scrape_all
             inc_charts = args.include_charts or args.scrape_all
