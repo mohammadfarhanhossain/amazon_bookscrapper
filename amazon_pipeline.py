@@ -111,6 +111,28 @@ DEFAULT_SEARCH_KEYWORDS = [
     "music theory history", "travel guides", "nature wildlife", "gardening plants"
 ]
 
+# 4. Publication Year Partitioning Seeds (captures books by eras and specific recent years)
+YEAR_KEYWORDS = [
+    "books 2026", "books 2025", "books 2024", "books 2023", "books 2022",
+    "books 2021", "books 2020", "books 2019", "books 2018", "books 2017",
+    "books 2016", "books 2015", "books 2010s", "books 2000s", "books 1990s",
+    "vintage classic 20th century", "classic 19th century literature"
+]
+
+# 5. High-Frequency Title Words, Bigrams & Broad Dictionary Search Seeds
+BIGRAM_DICTIONARY_KEYWORDS = [
+    "guide handbook", "encyclopedia companion", "chronicles volume", "essential manual",
+    "untold secrets", "lost kingdom", "dark empire", "eternal shadow", "journey discovery",
+    "hidden truth", "magic fantasy", "mastering complete", "introduction to",
+    "advanced practical", "modern approaches", "foundations principles", "ultimate collection",
+    "greatest illustrated", "anthology collected works", "biographical historical",
+    "scientific research", "philosophical inquiry", "mathematical thinking",
+    "world civilizations", "global affairs", "human condition", "future frontiers",
+    "adventures tales", "legends myths", "mysteries explored", "practical solutions"
+]
+
+COMBINED_EXPANDED_KEYWORDS = DEFAULT_SEARCH_KEYWORDS + YEAR_KEYWORDS + BIGRAM_DICTIONARY_KEYWORDS
+
 RAW_CATEGORIES_FILE = RAW_DIR / "Amazon_All_Categories.csv"
 RAW_SUBCATEGORIES_FILE = RAW_DIR / "Amazon_Discovered_Subcategories.csv"
 PROCESSED_BOOKS_FILE = PROCESSED_DIR / "Amazon_Category_Books_Data.csv"
@@ -572,8 +594,8 @@ def scrape_amazon_pipeline(
                         browser.close()
                         return
 
-                    # Dynamic subcategories discovery (from sidebar on page 1 of bestsellers)
-                    if discover_subcategories and target_type == "bestseller" and page_num == 1:
+                    # Dynamic subcategories discovery (from sidebar on page 1 of bestsellers and subcategories)
+                    if discover_subcategories and target_type in ["bestseller", "subcategory"] and page_num == 1 and len(targets) < 800:
                         subcats = discover_subcategories_on_page(page, parent_name=t_name)
                         new_subcats = [s for s in subcats if not any(t["url"] == s["url"] for t in targets)]
                         if new_subcats:
@@ -603,6 +625,12 @@ def scrape_amazon_pipeline(
                                 seen_asins.add(parsed["asin"])
                                 added_for_page += 1
                         print(f" -> Added {added_for_page} new books (Total unique: {len(seen_asins)})")
+
+                        # End-of-results detection ("end porjonto scrape")
+                        disabled_next = page.query_selector("span.s-pagination-disabled.s-pagination-next, li.a-disabled.a-last")
+                        if disabled_next:
+                            print(f" -> Reached last available page for '{t_name}'.")
+                            break
 
                     else:
                         items = page.query_selector_all("div.zg-grid-general-faceout")
@@ -843,18 +871,19 @@ def main():
     parser = argparse.ArgumentParser(description="Unified Amazon Books Scraper, Normalization & SQL Pipeline.")
     parser.add_argument("--scrape", action="store_true", help="Scrape Amazon books.")
     parser.add_argument("--scrape-all", action="store_true", help="Scrape Bestsellers, Discovered Subcategories, Charts, and Search listings.")
+    parser.add_argument("--deep-expansion", action="store_true", help="Maximum scale: 7 pages per query, A-Z/Bigram/Dictionary seeds, Publication Years, deep nested subcategories, and charts.")
     parser.add_argument("--mode", choices=["all", "bestsellers", "charts", "search"], default=None, help="Target specific scrape mode.")
     parser.add_argument("--discover-subcategories", action="store_true", help="Discover and scrape nested subcategories from the sidebar.")
     parser.add_argument("--include-charts", action="store_true", help="Include New Releases, Movers & Shakers, and Most Wished For.")
     parser.add_argument("--search-keywords", type=str, nargs="?", const="", default=None, help="Comma-separated keywords to search (e.g. 'python, thriller, fantasy').")
-    parser.add_argument("--max-pages", type=int, default=2, help="Number of pages to scrape per category or keyword (default: 2).")
+    parser.add_argument("--max-pages", type=int, default=2, help="Number of pages to scrape per category or keyword (default: 2; deep expansion defaults to 7).")
     parser.add_argument("--category-limit", type=int, default=None, help="Limit number of target categories/searches.")
     parser.add_argument("--force-list", action="store_true", help="Re-seed raw categories list.")
     parser.add_argument("--build-only", action="store_true", help="Build clean CSVs without scraping or SQL upload.")
     parser.add_argument("--verify-only", action="store_true", help="Verify clean CSVs and dollar pricing.")
     args = parser.parse_args()
 
-    if args.force_list and not (args.scrape or args.scrape_all or args.build_only or args.mode or args.search_keywords):
+    if args.force_list and not (args.scrape or args.scrape_all or args.deep_expansion or args.build_only or args.mode or args.search_keywords):
         setup_raw_categories(force=True)
         print("[OK] Categories list refreshed.")
         return
@@ -866,35 +895,41 @@ def main():
         verify_local_csvs()
         return
 
-    should_scrape = args.scrape or args.scrape_all or (args.mode is not None) or (args.search_keywords is not None)
+    should_scrape = args.scrape or args.scrape_all or args.deep_expansion or (args.mode is not None) or (args.search_keywords is not None)
 
     if should_scrape:
-        discover_subs = args.discover_subcategories or args.scrape_all
-        inc_charts = args.include_charts or args.scrape_all
-
-        # Determine scraping mode
-        if args.mode:
-            selected_mode = args.mode
-        elif args.scrape_all:
+        if args.deep_expansion:
             selected_mode = "all"
-        elif args.search_keywords is not None and not args.scrape:
-            selected_mode = "search"
+            discover_subs = True
+            inc_charts = True
+            keywords = COMBINED_EXPANDED_KEYWORDS
+            effective_max_pages = 7 if args.max_pages == 2 else args.max_pages
         else:
-            selected_mode = "bestsellers"
+            discover_subs = args.discover_subcategories or args.scrape_all
+            inc_charts = args.include_charts or args.scrape_all
+            effective_max_pages = args.max_pages
 
-        # Determine search keywords
-        keywords = None
-        if args.search_keywords is not None:
-            if args.search_keywords.strip():
-                keywords = [k.strip() for k in args.search_keywords.split(",") if k.strip()]
+            if args.mode:
+                selected_mode = args.mode
+            elif args.scrape_all:
+                selected_mode = "all"
+            elif args.search_keywords is not None and not args.scrape:
+                selected_mode = "search"
             else:
+                selected_mode = "bestsellers"
+
+            keywords = None
+            if args.search_keywords is not None:
+                if args.search_keywords.strip():
+                    keywords = [k.strip() for k in args.search_keywords.split(",") if k.strip()]
+                else:
+                    keywords = DEFAULT_SEARCH_KEYWORDS
+            elif selected_mode in ["all", "search"]:
                 keywords = DEFAULT_SEARCH_KEYWORDS
-        elif selected_mode in ["all", "search"]:
-            keywords = DEFAULT_SEARCH_KEYWORDS
 
         scrape_amazon_pipeline(
             mode=selected_mode,
-            max_pages=args.max_pages,
+            max_pages=effective_max_pages,
             discover_subcategories=discover_subs,
             include_charts=inc_charts,
             search_keywords=keywords,

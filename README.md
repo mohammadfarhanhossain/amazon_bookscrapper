@@ -58,7 +58,13 @@ powershell -ExecutionPolicy Bypass -File .\run_amazon_daily.ps1
 & ".\.venv\Scripts\python.exe" "amazon_pipeline.py" --scrape-all
 ```
 
-### 3. Targeted Modes & Features
+### 3. Maximum Deep Expansion (All 4 Scaling Vectors -> 50,000+ Books Target)
+Runs 7 pages per query (or until end of results), A-Z/Bigram seeds, Publication Years, deep subcategories Level 2 & 3, and all charts:
+```powershell
+& ".\.venv\Scripts\python.exe" "amazon_pipeline.py" --deep-expansion
+```
+
+### 4. Targeted Modes & Features
 - **Auto-Discover Subcategories** (explores nested departments from Amazon's sidebar):
   ```powershell
   & ".\.venv\Scripts\python.exe" "amazon_pipeline.py" --scrape --discover-subcategories
